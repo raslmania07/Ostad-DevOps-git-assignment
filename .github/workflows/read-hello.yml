@@ -1,0 +1,27 @@
+name: Read Hello File Workflow
+
+# Trigger the workflow when code is pushed to the main branch
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  read-hello-file:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Checkout the repository's code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    # Step 2: Read and output the hello.txt file content
+    - name: Read and display hello.txt content
+      run: |
+        echo "=== Reading hello.txt file ==="
+        if [ -f hello.txt ]; then
+          echo "Content of hello.txt:"
+          cat hello.txt
+          echo "=== End of hello.txt content ==="
+        else
+          echo "hello.txt file not found!"
+        fi
